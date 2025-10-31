@@ -2,96 +2,39 @@
 
 A simple Python agent framework that connects to a local LLM (via LM Studio) and can call custom Python tools/functions based on LLM output. The agent interprets LLM responses, detects tool calls, executes them, and returns the final answer.
 
+**Features:**
+- Connects to a local LLM server (AnythingLLM, LM Studio, and Nexa)
+- Supports tool use to expand LLM capabilities
+- Easily extensible with custom tools
+
 ## Table of Contents
-- [Features](#features)
-- [Requirements](#requirements)
-- [Setup Instructions](#setup-instructions)
-- [Usage](#usage)
+- [Setup](#setup)
+- [Quick Start](#quick-start)
 - [Adding More Tools](#adding-more-tools)
 - [Contributing](#contributing)
 - [License](#license)
 
-## Features
-
-- Connects to a local LLM server (e.g., LM Studio)
-- Supports tool use to expand LLM capabilities
-- Easily extensible with custom tools
-
 ---
 
-## Requirements
+## Setup
 
-- Python 3.8+
-- `openai` and `pyyaml` Python packages
-- A running LM Studio server (or compatible OpenAI API endpoint)
+The local component requires you to have an LLM server configured and running on your machine. Please refer to the [Setup Guide](docs/README.md) for detailed instructions on setting up your local LLM server and configuring the agent.
 
----
-
-## Setup Instructions
-
-1. **Start LM Studio**
-
-   - Download and install [LM Studio](https://lmstudio.ai/) if you haven't already.
-   - Open LM Studio.
-
-2. **Download and Run a Model in LM Studio**
-
-   - In LM Studio, go to the "Models" tab and download a compatible model (e.g., llama-3.2-3b-instruct).
-   - Once downloaded, click "Run" to start the model server.
-   - Make sure the "OpenAI Compatible API" is enabled (check the API tab in LM Studio for the server URL, usually `http://localhost:1234/v1`).
-
-3. **Create and Edit the Configuration File**
-
-   Create a file named `config.yaml` in the project root with the following contents (edit values as needed):
-
-   ```yaml
-   MODEL: "hugging-quants/llama-3.2-3b-instruct"
-   LM_STUDIO_URL: "http://localhost:1234/v1"
-   LM_STUDIO_API_KEY: "lm-studio"
-   ```
-
-   - `MODEL`: The model name as shown in LM Studio.
-   - `LM_STUDIO_URL`: The API URL for your LM Studio server.
-   - `LM_STUDIO_API_KEY`: The API key (default for LM Studio is `"lm-studio"`).
-
-4. **Create and Activate a Virtual Environment**
-
+## Quick Start
+This Quickstart assumes you have setup the LM Studio server, properly configured the `config.yaml` file as per the [Setup Guide](docs/README.md).
+1. setup and activate a virtual environment
    ```sh
    python3 -m venv venv
    source venv/bin/activate
    ```
-
-   On Windows, activate with:
+2. Install dependencies
    ```sh
-   venv\Scripts\activate
+   pip install openai httpx pyyaml requests
    ```
-
-5. **Install Dependencies**
-
-   ```sh
-   pip install openai pyyaml requests asyncio httpx
-   ```
-
----
-
-## Usage
-
-1. **Start LM Studio** (or another OpenAI-compatible API server) on your machine.
-
-2. **Run the script:**
+3. Run the local agent
    ```sh
    python main.py
    ```
-
-   Example output:
-   ```
-   Agent result: The current time is 2024-06-01 12:34:56
-   ```
-
-3. **To run with different user input:**
-   Edit the `asyncio.run(agent.run(...))` line in `main.py` with your prompt.
-
----
 
 ## Adding More Tools
 
