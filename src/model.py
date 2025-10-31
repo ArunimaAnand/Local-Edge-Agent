@@ -4,6 +4,7 @@ from typing import List, Dict, Any
 
 from src.models.anythingllm import setup_anythingllm_client, anythingllm_chat_completion
 from src.models.lmstudio import setup_lm_studio_client, lmstudio_chat_completion
+from src.models.nexa import setup_nexa_client, nexa_chat_completion
 
 # A message is a dictionary with a role and content
 Message = Dict[str, str]
@@ -23,12 +24,12 @@ class ModelInterface:
             raise ValueError("MODEL_PROVIDER is not set in config.yaml")
         
         if self.model_provider.lower() == "anythingllm":
-            # raise NotImplementedError("AnythingLLM support is not implemented yet.")
             return setup_anythingllm_client(config)
         elif self.model_provider.lower() == "lmstudio":
             return setup_lm_studio_client(config)
         elif self.model_provider.lower() == "nexa":
-            raise NotImplementedError("Nexa support is not implemented yet.")
+            return setup_nexa_client(config)
+            # raise NotImplementedError("Nexa support is not implemented yet.")
         else:
             raise ValueError(f"Unsupported MODEL_PROVIDER: {self.model_provider}")
 
@@ -43,7 +44,6 @@ class ModelInterface:
             raise ValueError("MODEL_PROVIDER is not set in config.yaml")
         
         if self.model_provider.lower() == "anythingllm":
-            # raise NotImplementedError("AnythingLLM support is not implemented yet.")
             return anythingllm_chat_completion(
                 client=self.client,
                 messages=messages,
@@ -58,6 +58,12 @@ class ModelInterface:
                 stream=stream
             )
         elif self.model_provider.lower() == "nexa":
-            raise NotImplementedError("Nexa support is not implemented yet.")
+            # raise NotImplementedError("Nexa support is not implemented yet.")
+            return nexa_chat_completion(
+                client=self.client,
+                messages=messages,
+                temperature=temperature,
+                stream=stream
+            )
         else:
             raise ValueError(f"Unsupported MODEL_PROVIDER: {self.model_provider}")

@@ -122,6 +122,7 @@ def anythingllm_chat_completion(
 ) -> Any:
     """Send messages to the AnythingLLM language model and get a response."""
     if stream:
-        return client.streaming_chat(concat_messages(messages))
+        # return client.streaming_chat(concat_messages(messages))
+        raise NotImplementedError("AnythingLLM streaming chat is not implemented yet.")
     else:
         return client.chat(concat_messages(messages))
