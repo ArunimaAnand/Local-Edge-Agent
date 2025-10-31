@@ -29,7 +29,6 @@ class ModelInterface:
             return setup_lm_studio_client(config)
         elif self.model_provider.lower() == "nexa":
             return setup_nexa_client(config)
-            # raise NotImplementedError("Nexa support is not implemented yet.")
         else:
             raise ValueError(f"Unsupported MODEL_PROVIDER: {self.model_provider}")
 
