@@ -1,8 +1,6 @@
 # Local Agent
 
 An Edge Agent framework built in pure Python that connects to an edge language model server.
-
-**Features:**
 - Connects to a local language model server (AnythingLLM, LM Studio, and Nexa)
 - Supports tool use to expand language model capabilities
 - Easily extensible with custom tools
