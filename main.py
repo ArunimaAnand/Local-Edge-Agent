@@ -20,6 +20,7 @@ def main():
     )
     agent_identity = system_prompt + instructions
 
+    # build the agent for the session
     agent = Agent(
         tools=tools,
         identity=agent_identity

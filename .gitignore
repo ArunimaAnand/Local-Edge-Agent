@@ -4,3 +4,5 @@ venv/
 __pycache__/
 *.pyc
 config.yaml
+.pytest_cache/
+transcripts/transcript_*.txt

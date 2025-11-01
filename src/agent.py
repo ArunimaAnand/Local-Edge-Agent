@@ -1,4 +1,6 @@
 import re
+import yaml
+
 from typing import List
 from src.model import ModelInterface
 from src.tools import Tool
@@ -9,6 +11,11 @@ class Agent:
         tools: List[Tool],
         identity: str
     ):
+        # temporarily read in the configuration for the agent
+        # TODO: scope the configuration to only read the agent vars into a dict
+        with open("config.yaml", "r") as f:
+            config = yaml.safe_load(f)
+
         # model used by the agent
         self.model = ModelInterface()
 
@@ -19,14 +26,17 @@ class Agent:
         self.core_identity = identity
 
         # long term memory of the agent
-        self.long_term_memory = []
+        self.long_memory = ""
+        self._max_long_memory = config.get("LONG_MEMORY_SIZE", 5096) # tokens
 
         # short term history of the agent
-        self.short_term_memory = []
+        self.short_memory = []
+        self._max_short_memory = config.get("SHORT_MEMORY_SIZE", 20) # messages
 
         # set-up transcript for debugging/analysis/oversight
         # write directly to a new file in transcripts for each session
         # file name is timestamped + transcript as so: transcripts/transcript_<timestamp>.txt
+        self.transcript_file = f"transcripts/transcript_{self._get_timestamp()}.txt"
 
     ###
     # When building a prompt for the model, include:
@@ -65,3 +75,8 @@ class Agent:
             # Not a tool call: treat as final answer
             history.append({"role": "assistant", "content": response})
             return response.strip()
+        
+    def _get_timestamp(self) -> str:
+        from datetime import datetime
+        now = datetime.now()
+        return now.strftime("%Y%m%d_%H%M%S")
