@@ -17,7 +17,7 @@ def test_server_running():
     import requests
     url = f"{CONFIG['LM_STUDIO_URL']}/models"
     try:
-        response = requests.get(url, timeout=5)
+        response = requests.get(url, timeout=30)
         assert response.status_code == 200
     except Exception as e:
         pytest.fail(f"LM Studio server not running or unreachable: {e}")

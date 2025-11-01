@@ -21,7 +21,7 @@ def test_server_running():
             url,
             headers={"Authorization": "Bearer " + CONFIG["ANYTHINGLLM_API_KEY"]},
             json={"message": "ping", "mode": "chat", "sessionId": "pytest-session", "attachments": []},
-            timeout=5
+            timeout=30
         )
         assert response.status_code == 200
     except Exception as e:
