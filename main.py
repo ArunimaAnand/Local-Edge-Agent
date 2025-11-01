@@ -4,7 +4,9 @@ from src.agent import Agent
 from src.tools import tools, tool_descriptions
 
 def main():
-    # set the system prompt and instructions for the agent
+    # built the agent identity with the system prompt and instructions
+    #    - system prompt: tell the agent who it is and what it can do
+    #   - instructions: explain how to use the tools
     system_prompt = "You are a tool-calling agent that may use tools by responding according to their instructions.\n"
     instructions = (
         "You may use the following tools to assist with user queries.\n"
@@ -16,10 +18,11 @@ def main():
         "If the tool does not require an argument, use 'ToolName()'.\n"
         "Only use one tool per response.\n"
     )
+    agent_identity = system_prompt + instructions
 
     agent = Agent(
         tools=tools,
-        instructions=system_prompt + instructions
+        instructions=agent_identity
     )
 
     print("Type 'exit' or 'quit' to end the chat.")

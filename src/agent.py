@@ -7,7 +7,7 @@ class Agent:
     def __init__(
         self,
         tools: List[Tool],
-        instructions: str
+        identity: str
     ):
         # model used by the agent
         self.model = ModelInterface()
@@ -16,14 +16,14 @@ class Agent:
         self.tools = {tool.name: tool for tool in tools}
 
         # system instructions for the agent
-        self.instructions = instructions
+        self.core_identity = identity
 
     async def run(
         self,
         user_input: str,
     ) -> str:
         history = [
-            {"role": "system", "content": self.instructions},
+            {"role": "system", "content": self.core_identity},
             {"role": "user", "content": user_input}
         ]
         tool_call_pattern = re.compile(r"^(\w+)\((.*)\)$", re.DOTALL)
