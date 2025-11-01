@@ -33,11 +33,3 @@ def test_chat_endpoint():
     assert isinstance(reply, str)
     assert reply != "Response is not valid JSON"
     assert not reply.startswith("Chat request failed")
-
-def test_backend_class_direct():
-    """Test direct instantiation and chat method of AnythingLLMClient backend class."""
-    client = AnythingLLMClient(CONFIG)
-    response = client.chat("Direct backend test message")
-    assert isinstance(response, str)
-    assert response != "Response is not valid JSON"
-    assert not response.startswith("Chat request failed")

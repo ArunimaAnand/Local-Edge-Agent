@@ -28,11 +28,3 @@ def test_chat_endpoint():
     reply = client.chat(messages)
     assert isinstance(reply, str)
     assert reply
-
-def test_backend_class_direct():
-    """Test direct instantiation and chat method of LMStudioClient backend class."""
-    client = LMStudioClient(CONFIG)
-    messages = [{"role": "user", "content": "Direct backend test message"}]
-    response = client.chat(messages)
-    assert isinstance(response, str)
-    assert response
