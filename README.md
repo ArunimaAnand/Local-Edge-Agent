@@ -84,10 +84,6 @@ You can add new tools by defining a Python function and registering it with the 
     ]
     ```
 
-### 4. Update the instructions (handled automatically in the script)
-
-The script will automatically include your tool in the agent's instructions.
-
 ## Contributing
 I welcome contributions! Please follow these steps:
 1. Fork the repository.
