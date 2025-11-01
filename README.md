@@ -27,7 +27,7 @@ This Quickstart assumes you have setup the LM Studio server, properly configured
    ```
 2. Install dependencies
    ```sh
-   pip install openai httpx pyyaml requests
+   pip install openai httpx pyyaml requests pytest
    ```
 3. Run the local agent
    ```sh

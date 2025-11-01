@@ -42,7 +42,7 @@ Use this guide to setup and configure the Local Agent with your choice of local 
     ```
 4. Install the required dependencies:
     ```sh
-    pip install openai pyyaml requests asyncio httpx
+    pip install openai pyyaml requests asyncio httpx pytest
     ```
 5. Follow the additional instructions for the model backend(s) you want to use:
 - [AnythingLLM Backend Instructions](anythingllm_setup.md)
