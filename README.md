@@ -46,43 +46,43 @@ This Quickstart assumes you have setup the LM Studio server, properly configured
 
 You can add new tools by defining a Python function and registering it with the agent.
 
-### 1. Define your tool function
+1. Define your tool function
 
-```python
-def my_tool(arg: str) -> str:
-    # Your logic here
-    return f"Processed: {arg}"
-```
+    ```python
+    def my_tool(arg: str) -> str:
+        # Your logic here
+        return f"Processed: {arg}"
+    ```
 
-### 2. Create a `Tool` object
+2. Create a `Tool` object
 
-```python
-from src.tools import Tool
+    ```python
+    from src.tools import Tool
 
-my_tool_obj = Tool(
-    "MyTool",
-    my_tool,
-    "Describe what your tool does. Usage: MyTool(argument)"
-)
-```
+    my_tool_obj = Tool(
+        "MyTool",
+        my_tool,
+        "Describe what your tool does. Usage: MyTool(argument)"
+    )
+    ```
 
-### 3. Add it to the `tools` list
+3. Add it to the `tools` list
 
-```python
-tools = [
-    Tool(
-        "Echo",
-        echo_tool,
-        "Prints the input text prefixed with ECHO. Usage: return the string 'Echo(<text>)' where <text> is the text to echo."
-    ),
-    Tool(
-        "Time",
-        time_tool,
-        "Prints the current date and time. Usage: return the string 'Time()'"
-    ),
-    my_tool_obj,  # Add your tool here
-]
-```
+    ```python
+    tools = [
+        Tool(
+            "Echo",
+            echo_tool,
+            "Prints the input text prefixed with ECHO. Usage: return the string 'Echo(<text>)' where <text> is the text to echo."
+        ),
+        Tool(
+            "Time",
+            time_tool,
+            "Prints the current date and time. Usage: return the string 'Time()'"
+        ),
+        my_tool_obj,  # Add your tool here
+    ]
+    ```
 
 ### 4. Update the instructions (handled automatically in the script)
 
