@@ -26,14 +26,8 @@ def main():
         identity=agent_identity
     )
 
-    print("Type 'exit' or 'quit' to end the chat.")
-    while True:
-        user_input = input("You: ").strip()
-        if user_input.lower() in {"exit", "quit"}:
-            print("Goodbye!")
-            break
-        result = asyncio.run(agent.chat_completion(user_input))
-        print(f"Agent: {result}")
+    # run the agent interaction loop
+    agent.run()
 
 if __name__ == "__main__":
     main()
