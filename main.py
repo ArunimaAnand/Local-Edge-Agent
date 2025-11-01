@@ -4,16 +4,22 @@ from src.agent import Agent
 from src.tools import tools, tool_descriptions
 
 def main():
+    # set the system prompt and instructions for the agent
+    system_prompt = "You are a tool-calling agent that may use tools by responding according to their instructions.\n"
     instructions = (
-        "You are a tool-calling agent that may use the following tools by responding according to their instructions.\n"
-        "Available tools:\n"
+        "You may use the following tools to assist with user queries.\n"
+        "Avoid using tools if the user query can be answered without them.\n"
+        "Here are the tools you can use:\n"
         f"{tool_descriptions}\n"
-        "If no tool is needed, respond with the final answer."
+        "When you decide to use a tool, respond with the format:\n"
+        "'ToolName(arg)' where ToolName is the name of the tool and arg is the argument to pass to the tool.\n"
+        "If the tool does not require an argument, use 'ToolName()'.\n"
+        "Only use one tool per response.\n"
     )
 
     agent = Agent(
         tools=tools,
-        instructions=instructions
+        instructions=system_prompt + instructions
     )
 
     print("Type 'exit' or 'quit' to end the chat.")
