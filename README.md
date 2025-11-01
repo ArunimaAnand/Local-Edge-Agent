@@ -1,6 +1,6 @@
 # Local Agent
 
-A simple Python agent framework that connects to a local LLM (via LM Studio) and can call custom Python tools/functions based on LLM output. The agent interprets LLM responses, detects tool calls, executes them, and returns the final answer.
+An Edge Agent framework built in pure Python that connects to an edge language model server.
 
 **Features:**
 - Connects to a local LLM server (AnythingLLM, LM Studio, and Nexa)
