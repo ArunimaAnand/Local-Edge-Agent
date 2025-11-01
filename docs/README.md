@@ -19,6 +19,14 @@ Use this guide to setup and configure the Local Agent with your choice of local 
    ```yaml
    # general variables
     MODEL_PROVIDER: "your-provider-here"  # options: anythingllm, lmstudio, nexa
+    STREAM: False  # not working, do not use yet (or submit a PR!)
+    STREAM_TIMEOUT: 30
+    
+    # memory settings
+    SHORT_MEMORY_SIZE: 20  # messages
+    LONG_MEMORY_SIZE: 5096  # tokens
+    DISABLE_SHORT_MEMORY: False
+    DISABLE_LONG_MEMORY: True # not working, do not use yet (or submit a PR!)
 
     # AnythingLLM configuration
     ANYTHINGLLM_API_KEY: "your-api-key"
@@ -26,12 +34,12 @@ Use this guide to setup and configure the Local Agent with your choice of local 
     ANYTHINGLLM_URL: "http://localhost:3001/api/v1"
 
     # LM Studio configuration
-    LM_STUDIO_API_KEY: "lm-studio"
+    LM_STUDIO_API_KEY: "lm-studio" # placeholder, not used
     LM_STUDIO_MODEL: "hugging-quants/llama-3.2-3b-instruct"
     LM_STUDIO_URL: "http://localhost:1234/v1"
 
     # Nexa configuration
-    NEXA_API_KEY: "nexa"
+    NEXA_API_KEY: "nexa" # placeholder, configured in the sdk
     NEXA_URL: "http://127.0.0.1:18181/v1/chat/completions"
    ```
    Adjust the values as needed for the providers you want to use, sensible defaults have been chosen.
