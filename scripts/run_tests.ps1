@@ -8,6 +8,10 @@ Write-Host "Please start the required backend servers (AnythingLLM, LMStudio, Ne
 Write-Host "Press Enter when complete."
 Read-Host
 
+
+$baseDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+Set-Location $baseDir\..
+
 $tests = @()
 if ($a -or (-not $l -and -not $n -and -not $a)) { $tests += "tests/test_anythingllm.py" }
 if ($l -or (-not $a -and -not $n -and -not $l)) { $tests += "tests/test_lmstudio.py" }
