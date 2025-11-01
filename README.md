@@ -20,7 +20,7 @@ The local component **requires** you to have an LLM server configured and runnin
 
 ## Quick Start
 This Quickstart assumes you have setup the LM Studio server, properly configured the `config.yaml` file as per the [Setup Guide](docs/README.md).
-1. setup and activate a virtual environment
+1. Setup and activate a virtual environment
    ```sh
    python3 -m venv venv
    source venv/bin/activate
