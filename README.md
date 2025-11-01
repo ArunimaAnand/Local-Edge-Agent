@@ -7,7 +7,7 @@ A simple Python agent framework that connects to a local LLM (via LM Studio) and
 - Supports tool use to expand LLM capabilities
 - Easily extensible with custom tools
 
-## Table of Contents
+### Table of Contents
 - [Setup](#setup)
 - [Quick Start](#quick-start)
 - [Adding More Tools](#adding-more-tools)
@@ -18,7 +18,7 @@ A simple Python agent framework that connects to a local LLM (via LM Studio) and
 
 ## Setup
 
-The local component requires you to have an LLM server configured and running on your machine. Please refer to the [Setup Guide](docs/README.md) for detailed instructions on setting up your local LLM server and configuring the agent.
+The local component **requires** you to have an LLM server configured and running on your machine. Please refer to the [Setup Guide](docs/README.md) for detailed setup and usage instructions.
 
 ## Quick Start
 This Quickstart assumes you have setup the LM Studio server, properly configured the `config.yaml` file as per the [Setup Guide](docs/README.md).

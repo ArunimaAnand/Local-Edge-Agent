@@ -1,8 +1,12 @@
-# Local Agent Setup Guide
+# Local Agent Setup and Usage Guide
 
 Use this guide to setup and configure the Local Agent with your choice of local LLM backend.
 
-## General Setup
+### Table of Contents
+- [Setup](#setup)
+- [Usage](#usage)
+
+## Setup
 1. Clone the repository:
     ```sh
     git clone https://github.com/thatrandomfrenchdude/local-agent.git
@@ -41,72 +45,13 @@ Use this guide to setup and configure the Local Agent with your choice of local 
     pip install openai pyyaml requests asyncio httpx
     ```
 5. Follow the additional instructions for the model backend(s) you want to use:
-- [AnythingLLM Backend Instructions](#anythingllm-backend)
-- [LM Studio Backend Instructions](#lm-studio-backend)
-- [Nexa Backend Instructions](#nexa-backend)
+- [AnythingLLM Backend Instructions](anythingllm_setup.md)
+- [LM Studio Backend Instructions](lmstudio_setup.md)
+- [Nexa Backend Instructions](nexa_setup.md)
 
----
-
-## AnythingLLM Backend
-
-### Requirements
-- Python 3.8+
-
-### Setup
-1. **Start AnythingLLM**
-    - Download and install [AnythingLLM](https://anythingllm.com/).
-    - Open AnythingLLM.
-2. **Set up the NPU Runtime**
-    - Choose `AnythingLLM NPU` when prompted to choose an LLM provider to target the NPU
-3. **Download and Run a Model**
-    - This sample uses `Llama 3.1 8B Chat` with 8K context
-    - The model will take some time to download depending on your internet speed
-    - Sometimes a model failes to download properly. See the [troubleshooting section](#troubleshooting) section below if you have issues.
-4. **Create a Workspace**
-    - Click "+ New Workspace."
-    - Enter the workspace name `local-agent`. If you prefer a different name, choose a simple workspace name as the slug can sometimes change if there are special characters. See the [troubleshooting section](#troubleshooting) below if you have issues.
-    - If you chose a custom workspace name, make sure to update the `ANYTHINGLLM_WORKSPACE` variable in your `config.yaml` file.
-5. **Generate an API key**
-    - Click the settings button on the bottom of the left panel
-    - Open the "Tools" dropdown
-    - Click "Developer API"
-    - Click "Generate New API Key"
-    - Copy the generated key and paste it into the `ANYTHINGLLM_API_KEY` variable in your `config.yaml` file.
-
-### Troubleshooting
-***AnythingLLM NPU Runtime Missing***<br>
-On a Snapdragon X Elite machine, AnythingLLM NPU should be the default LLM Provider. If you do not see it as an option in the dropdown, you downloaded the AMD64 version of AnythingLLM. Delete the app and install the ARM64 version instead.
-
-***Model Not Downloaded***<br>
-Sometimes the selected model fails to download, causing an error in the generation. To resolve, check the model in Settings -> AI Providers -> LLM in AnythingLLM. You should see "uninstall" on the model card if it is installed correctly. If you see "model requires download," choose another model, click save, switch back, then save. You should see the model download in the upper right corner of the AnythingLLM window.
-
----
-
-## LM Studio Backend
-
-### Requirements
-
-- Python 3.8+
-- `openai` and `pyyaml` Python packages
-- A running LM Studio server (or compatible OpenAI API endpoint)
-
-### Setup Instructions
-
-1. **Start LM Studio**
-
-   - Download and install [LM Studio](https://lmstudio.ai/)
-   - Open LM Studio.
-
-2. **Download and Run a Model**
-
-   - In LM Studio, go to the "Models" tab and download a compatible model (e.g., llama-3.2-3b-instruct).
-   - Add the model name to the `LM_STUDIO_MODEL` field in your `config.yaml`.
-   - Once downloaded, click "Run" to start the model server.
-   - Make sure the "OpenAI Compatible API" is enabled (check the API tab in LM Studio for the server URL, usually `http://localhost:1234/v1`).
-
----
-
-## Nexa Backend
-
-### Setup
-### Usage
+## Usage
+1. Ensure your chosen LLM server is running locally.
+2. Run the local agent:
+    ```sh
+    python main.py
+    ```
