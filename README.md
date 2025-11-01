@@ -14,8 +14,6 @@ A simple Python agent framework that connects to a local LLM (via LM Studio) and
 - [Contributing](#contributing)
 - [License](#license)
 
----
-
 ## Setup
 
 The local component **requires** you to have an LLM server configured and running on your machine. Please refer to the [Setup Guide](docs/README.md) for detailed setup and usage instructions.
@@ -82,8 +80,6 @@ tools = [
 
 The script will automatically include your tool in the agent's instructions.
 
----
-
 ## Contributing
 I welcome contributions! Please follow these steps:
 1. Fork the repository.
@@ -91,9 +87,5 @@ I welcome contributions! Please follow these steps:
 3. Make your changes, commit them, and push to your branch.
 4. Create a pull request explaining your changes.
 
----
-
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
