@@ -4,7 +4,9 @@ Use this guide to setup and configure the Local Agent with your choice of local 
 
 ### Table of Contents
 - [Setup](#setup)
+- [Testing](#testing)
 - [Usage](#usage)
+- [Adding More Tools](#adding-more-tools)
 
 ## Setup
 1. Clone the repository:
@@ -50,6 +52,7 @@ Use this guide to setup and configure the Local Agent with your choice of local 
 - [Nexa Backend Instructions](nexa_setup.md)
 
 ## Testing
+
 Run the tests from the base directory to verify your setup:
 ```
 # use flags to select specific backend tests, none for all
@@ -69,3 +72,45 @@ Start your chosen model server(s), then run the local agent:
 ```sh
 python main.py
 ```
+
+## Adding More Tools
+
+You can add new tools by defining a Python function and registering it with the agent.
+
+1. Define your tool function
+
+    ```python
+    def my_tool(arg: str) -> str:
+        # Your logic here
+        return f"Processed: {arg}"
+    ```
+
+2. Create a `Tool` object
+
+    ```python
+    from src.tools import Tool
+
+    my_tool_obj = Tool(
+        "MyTool",
+        my_tool,
+        "Describe what your tool does. Usage: MyTool(argument)"
+    )
+    ```
+
+3. Add it to the `tools` list
+
+    ```python
+    tools = [
+        Tool(
+            "Echo",
+            echo_tool,
+            "Prints the input text prefixed with ECHO. Usage: return the string 'Echo(<text>)' where <text> is the text to echo."
+        ),
+        Tool(
+            "Time",
+            time_tool,
+            "Prints the current date and time. Usage: return the string 'Time()'"
+        ),
+        my_tool_obj,  # Add your tool here
+    ]
+    ```

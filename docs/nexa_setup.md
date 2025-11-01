@@ -1,5 +1,7 @@
 # Nexa Backend
 
+Before following these steps, ensure you have completed the initial [Setup Guide](README.md).
+
 ## Requirements
 - Python 3.11 to Python 3.13
 
