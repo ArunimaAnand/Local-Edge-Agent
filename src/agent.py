@@ -18,7 +18,24 @@ class Agent:
         # system instructions for the agent
         self.core_identity = identity
 
-    async def run(
+        # long term memory of the agent
+        self.long_term_memory = []
+
+        # short term history of the agent
+        self.short_term_memory = []
+
+        # set-up transcript for debugging/analysis/oversight
+        # write directly to a new file in transcripts for each session
+        # file name is timestamped + transcript as so: transcripts/transcript_<timestamp>.txt
+
+    ###
+    # When building a prompt for the model, include:
+    # 1. The core identity/instructions of the agent
+    # 2. The long-term memory of the agent, summarized as a page that is regularly updated as messages drop off the short-term history
+    # 3. The recent short-term history of interactions
+    # 4. The current user input
+
+    async def chat_completion(
         self,
         user_input: str,
     ) -> str:
