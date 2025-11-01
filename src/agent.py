@@ -98,48 +98,39 @@ class Agent:
         return messages
     
     def _handle_memory(self, user_input: str, assistant_response: str) -> None:
-        """Update the agent's memory with the latest interaction."""
         print("Updating memory...")
-        # add to short-term memory
         self.short_memory.append({"role": "user", "content": user_input})
         self.short_memory.append({"role": "assistant", "content": assistant_response})
 
-        # trim short-term memory if it exceeds max size
         popped_messages = []
         while len(self.short_memory) > self._max_short_memory:
-            popped_messages.append(self.short_memory.pop(0))  # remove oldest message
+            popped_messages.append(self.short_memory.pop(0))
 
-        # update long-term memory when messages are popped from short-term memory
         if popped_messages:
-            # build the summary prompt
-            instruction_content = (
-                "Use the following messages to update the long-term memory summary of an agent."
-                "This will replace the existing long-term memory summary, so combine the old and new information."
-                "The long-term memory should broadly capture the agent context over time in a concise manner."
-                "You will receive the existing long-term memory summary in <long> tags, a series of messages that have just dropped off the short-term history in <messages> tags, and the short term-memory in <short> tags."
-                "Use this information to create an updated long-term memory summary without duplicating the short-term memory."
-                "Keep the size of the summary approximately 5096 tokens or less."
+            # Flatten messages for readability
+            popped_messages_text = "\n".join(
+                f"{msg['role'].capitalize()}: {msg['content']}" for msg in popped_messages
+            )
+            short_memory_text = "\n".join(
+                f"{msg['role'].capitalize()}: {msg['content']}" for msg in self.short_memory
             )
 
-            # collapse the memory messages into the prompt
-            summary_content = f"<long>{self.long_memory}</long>\n<messages>"
-            for msg in popped_messages:
-                summary_content += f"<{msg['role']}>{msg['content']}</{msg['role']}>\n"
-            summary_content += "</messages>\n<short>"
-            for msg in self.short_memory:
-                summary_content += f"<{msg['role']}>{msg['content']}</{msg['role']}>\n"
-            summary_content += "</short>"
-
-            # combine the instruction and content
-            instruction_content += "\n\n" + summary_content
+            instruction_content = (
+                "Update the long-term memory summary for this agent.\n"
+                "Previous summary:\n"
+                f"{self.long_memory}\n\n"
+                "Messages that just dropped off short-term memory:\n"
+                f"{popped_messages_text}\n\n"
+                "Current short-term memory:\n"
+                f"{short_memory_text}\n\n"
+                "Please write a concise English summary that includes important context from all of the above, "
+                "without duplicating short-term memory. Respond in English only."
+            )
 
             summary_prompt = [
                 {"role": "system", "content": instruction_content},
             ]
-            # get the summary from the model
             summary = self.model.chat_completion(summary_prompt)
-            
-            # replace the long-term memory with the new summary
             self.long_memory = summary.strip()
 
         print("Memory updated.")
