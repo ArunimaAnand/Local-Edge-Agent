@@ -22,3 +22,5 @@
     nexa serve
     ```
     Note: Local Agent is coded to run with the Nexa backend with their `NexaAI/Qwen3-4B-Instruct-2507-npu` model. It will be downloaded automatically when you start chat with the server for the first time, which may take some time depending on your internet speed.
+
+Return to the [Testing](README.md/#testing) and [Usage](README.md/#usage) sections in the [Setup Guide](README.md) to verify your setup and run the local agent.

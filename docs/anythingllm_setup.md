@@ -1,9 +1,9 @@
 # AnythingLLM Backend
 
-## Requirements
+### Requirements
 - Python 3.8+
 
-## Setup
+### Setup
 1. **Start AnythingLLM**
     - Download and install [AnythingLLM](https://anythingllm.com/).
     - Open AnythingLLM.
@@ -24,7 +24,9 @@
     - Click "Generate New API Key"
     - Copy the generated key and paste it into the `ANYTHINGLLM_API_KEY` variable in your `config.yaml` file.
 
-## Troubleshooting
+Return to the [Testing](README.md/#testing) and [Usage](README.md/#usage) sections in the [Setup Guide](README.md) to verify your setup and run the local agent.
+
+### Troubleshooting
 ***AnythingLLM NPU Runtime Missing***<br>
 On a Snapdragon X Elite machine, AnythingLLM NPU should be the default LLM Provider. If you do not see it as an option in the dropdown, you downloaded the AMD64 version of AnythingLLM. Delete the app and install the ARM64 version instead.
 

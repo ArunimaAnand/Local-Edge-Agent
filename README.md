@@ -29,7 +29,15 @@ This Quickstart assumes you have setup the LM Studio server, properly configured
    ```sh
    pip install openai httpx pyyaml requests pytest
    ```
-3. Run the local agent
+3. Run the tests to verify the setup
+   ```
+   # Windows PowerShell
+    .\scripts\run_tests.ps1 -l
+
+   # Mac/Linux
+   ./scripts/run_tests.sh -l
+   ```
+4. Run the local agent
    ```sh
    python main.py
    ```

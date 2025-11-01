@@ -49,9 +49,23 @@ Use this guide to setup and configure the Local Agent with your choice of local 
 - [LM Studio Backend Instructions](lmstudio_setup.md)
 - [Nexa Backend Instructions](nexa_setup.md)
 
+## Testing
+Run the tests from the base directory to verify your setup:
+```
+# use flags to select specific backend tests, none for all
+# -a: AnythingLLM
+# -l: LM Studio
+# -n: Nexa
+
+# Windows PowerShell
+.\scripts\run_tests.ps1
+
+# Mac/Linux
+./scripts/run_tests.sh -a -l
+```
+
 ## Usage
-1. Ensure your chosen LLM server is running locally.
-2. Run the local agent:
-    ```sh
-    python main.py
-    ```
+Start your chosen model server(s), then run the local agent:
+```sh
+python main.py
+```

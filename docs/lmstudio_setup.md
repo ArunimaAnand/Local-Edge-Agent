@@ -19,3 +19,5 @@
    - Add the model name to the `LM_STUDIO_MODEL` field in your `config.yaml`.
    - Once downloaded, click "Run" to start the model server.
    - Make sure the "OpenAI Compatible API" is enabled (check the API tab in LM Studio for the server URL, usually `http://localhost:1234/v1`).
+
+Return to the [Testing](README.md/#testing) and [Usage](README.md/#usage) sections in the [Setup Guide](README.md) to verify your setup and run the local agent.
