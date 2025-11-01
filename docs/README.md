@@ -2,13 +2,13 @@
 
 Use this guide to setup and configure the Local Agent with your choice of local LLM backend.
 
-### Table of Contents
+**Table of Contents**
 - [Setup](#setup)
 - [Testing](#testing)
 - [Usage](#usage)
 - [Adding More Tools](#adding-more-tools)
 
-## Setup
+### Setup
 1. Clone the repository:
     ```sh
     git clone https://github.com/thatrandomfrenchdude/local-agent.git
@@ -51,7 +51,9 @@ Use this guide to setup and configure the Local Agent with your choice of local 
 - [LM Studio Backend Instructions](lmstudio_setup.md)
 - [Nexa Backend Instructions](nexa_setup.md)
 
-## Testing
+---
+
+### Testing
 
 Run the tests from the base directory to verify your setup:
 ```
@@ -67,13 +69,17 @@ Run the tests from the base directory to verify your setup:
 ./scripts/run_tests.sh -a -l
 ```
 
-## Usage
+---
+
+### Usage
 Start your chosen model server(s), then run the local agent:
 ```sh
 python main.py
 ```
 
-## Adding More Tools
+---
+
+### Adding More Tools
 
 You can add new tools by defining a Python function and registering it with the agent.
 
@@ -114,3 +120,6 @@ You can add new tools by defining a Python function and registering it with the 
         my_tool_obj,  # Add your tool here
     ]
     ```
+4. Restart the agent to use the new tool.
+
+---

@@ -7,11 +7,6 @@ An Edge Agent framework built in pure Python that connects to an edge language m
 - Supports tool use to expand language model capabilities
 - Easily extensible with custom tools
 
-### Table of Contents
-- [Quick Start](#quick-start)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Quick Start
 
 1. Refer to the [Setup Guide](docs/README.md) to configure the application.
