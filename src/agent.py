@@ -18,6 +18,7 @@ class Agent:
         with open("config.yaml", "r") as f:
             config = yaml.safe_load(f)
 
+        # # # # core agent configuration # # # #
         # model used by the agent
         self.model = ModelInterface()
 
@@ -26,14 +27,13 @@ class Agent:
 
         # system instructions for the agent
         self.core_identity = identity
+        # # # # # # # # # # # # # # # # # # # #
 
         # # # # agent memory management # # # #
-        # long term memory of the agent
         self.long_memory = ""
         self._max_long_memory = config.get("LONG_MEMORY_SIZE", 5096) # tokens
         self._disable_long_memory = config.get("DISABLE_LONG_MEMORY", True)
 
-        # short term history of the agent
         self.short_memory = []
         self._max_short_memory = config.get("SHORT_MEMORY_SIZE", 20) # messages
         self._disable_short_memory = config.get("DISABLE_SHORT_MEMORY", False)
