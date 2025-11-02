@@ -71,11 +71,11 @@ Run the tests from the base directory to verify your setup:
 # -l: LM Studio
 # -n: Nexa  # ARM64 Windows only
 
-# Windows PowerShell
+# Windows PowerShell (running all tests)
 .\scripts\run_tests.ps1 
 
-# Mac/Linux
-./scripts/run_tests.sh -a -l
+# Mac/Linux (running core and LM Studio tests only)
+./scripts/run_tests.sh -c -l
 ```
 
 ---
