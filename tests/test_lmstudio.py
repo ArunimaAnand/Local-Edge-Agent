@@ -4,8 +4,8 @@ import pytest
 import yaml
 import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
-from servers.lmstudio import LMStudioClient
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from src.servers.lmstudio import LMStudioClient
 
 def load_config():
     with open("config.yaml", "r") as f:

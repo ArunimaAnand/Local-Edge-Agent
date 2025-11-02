@@ -2,6 +2,7 @@
 
 # Usage: ./run_tests.sh [-a] [-l]
 # -a: Run AnythingLLM tests only
+# -c: Run core tests only
 # -l: Run LMStudio tests only
 
 set -e
@@ -19,10 +20,12 @@ cd "$SCRIPT_DIR/.."
 
 # Parse arguments
 a_flag=false
+c_flag=false
 l_flag=false
-while getopts "al" opt; do
+while getopts "acl" opt; do
   case $opt in
     a) a_flag=true ;;
+    c) c_flag=true ;;
     l) l_flag=true ;;
     *) ;;
   esac
@@ -30,11 +33,16 @@ done
 
 # Determine tests to run
 tests=()
-if $a_flag || (! $l_flag && ! $a_flag); then tests+=("tests/test_anythingllm.py"); fi
-if $l_flag || (! $a_flag && ! $l_flag); then tests+=("tests/test_lmstudio.py"); fi
+if $a_flag || (! $a_flag && ! $c_flag && ! $l_flag); then tests+=("tests/test_anythingllm.py"); fi
+if $c_flag || (! $a_flag && ! $c_flag && ! $l_flag); then
+  tests+=("tests/core/test_agent.py")
+  tests+=("tests/core/test_model.py")
+  tests+=("tests/core/test_tools.py")
+fi
+if $l_flag || (! $a_flag && ! $c_flag && ! $l_flag); then tests+=("tests/test_lmstudio.py"); fi
 
 if [ ${#tests[@]} -eq 0 ]; then
-  tests=("tests/test_anythingllm.py" "tests/test_lmstudio.py")
+  tests=("tests/test_anythingllm.py" "tests/test_lmstudio.py" "tests/core/test_agent.py" "tests/core/test_model.py" "tests/core/test_tools.py")
 fi
 
 echo "Running pytest for: ${tests[*]}"

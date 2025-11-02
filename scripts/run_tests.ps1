@@ -1,5 +1,6 @@
 param(
     [switch]$a,
+    [switch]$c,
     [switch]$l,
     [switch]$n
 )
@@ -13,12 +14,17 @@ $baseDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 Set-Location $baseDir\..
 
 $tests = @()
-if ($a -or (-not $l -and -not $n -and -not $a)) { $tests += "tests/test_anythingllm.py" }
-if ($l -or (-not $a -and -not $n -and -not $l)) { $tests += "tests/test_lmstudio.py" }
-if ($n -or (-not $a -and -not $l -and -not $n)) { $tests += "tests/test_nexa.py" }
+if ($a -or (-not $a -and -not $c -and -not $l -and -not $n)) { $tests += "tests/test_anythingllm.py" }
+if ($c -or (-not $a -and -not $c -and -not $l -and -not $n)) {
+    $tests += "tests/core/test_agent.py"
+    $tests += "tests/core/test_model.py"
+    $tests += "tests/core/test_tools.py"
+}
+if ($l -or (-not $a -and -not $c -and -not $l -and -not $n)) { $tests += "tests/test_lmstudio.py" }
+if ($n -or (-not $a -and -not $c -and -not $l -and -not $n)) { $tests += "tests/test_nexa.py" }
 
 if ($tests.Count -eq 0) {
-    $tests = @("tests/test_anythingllm.py", "tests/test_lmstudio.py", "tests/test_nexa.py")
+    $tests = @("tests/test_anythingllm.py", "tests/test_lmstudio.py", "tests/test_nexa.py", "tests/core/test_agent.py", "tests/core/test_model.py", "tests/core/test_tools.py")
 }
 
 Write-Host "Running pytest for: $($tests -join ', ')"

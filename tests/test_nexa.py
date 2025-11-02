@@ -4,8 +4,8 @@ import pytest
 import yaml
 import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
-from servers.nexa import NexaClient
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from src.servers.nexa import NexaClient
 
 def load_config():
     with open("config.yaml", "r") as f:
