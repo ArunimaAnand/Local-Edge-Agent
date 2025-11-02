@@ -10,8 +10,8 @@ Write-Host "Press Enter when complete."
 Read-Host
 
 
-$baseDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
-Set-Location $baseDir\..
+# Get the project root directory (parent of scripts folder)
+Set-Location $PSScriptRoot\..
 
 $tests = @()
 if ($a -or (-not $a -and -not $c -and -not $l -and -not $n)) { $tests += "tests/test_anythingllm.py" }

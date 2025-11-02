@@ -1,5 +1,6 @@
 import sys
 import os
+import tempfile
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 import pytest
@@ -22,8 +23,8 @@ def test_agent_run_and_memory(monkeypatch):
     monkeypatch.setattr("src.agent.ModelInterface", lambda: DummyModel())
     tools = [Tool("Echo", dummy_tool_func, "Echoes input")]
     agent = Agent(tools, "Test agent identity")
-    # Patch transcript file to avoid file I/O
-    agent.transcript_file = "/tmp/test_transcript.txt"
+    # Use a platform-independent temp file
+    agent.transcript_file = os.path.join(tempfile.gettempdir(), "test_transcript.txt")
     agent.run()
     assert agent.short_memory[-1]["content"] == "Hello, world!"
 
