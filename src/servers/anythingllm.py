@@ -23,15 +23,15 @@ class AnythingLLMClient:
             "Authorization": "Bearer " + self.api_key
         }  
 
-    def chat(self, message: str) -> str:
+    def chat(self, messages: str) -> str:
         """
         Send a chat request to the model server and return the response
         
         Inputs:
-        - message: The message to send to the chatbot
+        - messages: The message chain to send to the chatbot
         """
         data = {
-            "message": message,
+            "message": concat_messages(messages),# message,
             "mode": "chat",
             "sessionId": "example-session-id",
             "attachments": []
@@ -114,15 +114,15 @@ def setup_anythingllm_client(
 ) -> AnythingLLMClient:
     return AnythingLLMClient(config)
 
-def anythingllm_chat_completion(
-    client: AnythingLLMClient,
-    messages: List[Dict[str, str]],
-    temperature: float = 0.7,
-    stream: bool = False
-) -> Any:
-    """Send messages to the AnythingLLM language model and get a response."""
-    if stream:
-        # return client.streaming_chat(concat_messages(messages))
-        raise NotImplementedError("AnythingLLM streaming chat is not implemented yet.")
-    else:
-        return client.chat(concat_messages(messages))
+# def anythingllm_chat_completion(
+#     client: AnythingLLMClient,
+#     messages: List[Dict[str, str]],
+#     temperature: float = 0.7,
+#     stream: bool = False
+# ) -> Any:
+#     """Send messages to the AnythingLLM language model and get a response."""
+#     if stream:
+#         # return client.streaming_chat(concat_messages(messages))
+#         raise NotImplementedError("AnythingLLM streaming chat is not implemented yet.")
+#     else:
+#         return client.chat(concat_messages(messages))

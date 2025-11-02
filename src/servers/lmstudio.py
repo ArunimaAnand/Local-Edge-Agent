@@ -30,15 +30,15 @@ def setup_lm_studio_client(
 ) -> LMStudioClient:
     return LMStudioClient(config)
 
-def lmstudio_chat_completion(
-    client: LMStudioClient,
-    messages: List[Dict[str, str]],
-    temperature: float = 0.7,
-    stream: bool = False
-) -> Any:
-    """Send messages to the LM Studio language model and get a response."""
-    if stream:
-        # return client.streaming_chat(messages, temperature=temperature)
-        raise NotImplementedError("LM Studio streaming chat is not implemented yet.")
-    else:
-        return client.chat(messages, temperature=temperature)
+# def lmstudio_chat_completion(
+#     client: LMStudioClient,
+#     messages: List[Dict[str, str]],
+#     temperature: float = 0.7,
+#     stream: bool = False
+# ) -> Any:
+#     """Send messages to the LM Studio language model and get a response."""
+#     if stream:
+#         # return client.streaming_chat(messages, temperature=temperature)
+#         raise NotImplementedError("LM Studio streaming chat is not implemented yet.")
+#     else:
+#         return client.chat(messages, temperature=temperature)

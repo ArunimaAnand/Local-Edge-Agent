@@ -47,15 +47,15 @@ def setup_nexa_client(
 ) -> NexaClient:
     return NexaClient(config)
 
-def nexa_chat_completion(
-    client: NexaClient,
-    messages: List[Dict[str, str]],
-    temperature: float = 0.7,
-    stream: bool = False
-) -> Any:
-    """Send messages to the Nexa language model and get a response."""
-    if stream:
-        # return client.streaming_chat(messages, temperature=temperature)
-        raise NotImplementedError("Nexa streaming chat is not implemented yet.")
-    else:
-        return client.chat(messages, temperature=temperature)
+# def nexa_chat_completion(
+#     client: NexaClient,
+#     messages: List[Dict[str, str]],
+#     temperature: float = 0.7,
+#     stream: bool = False
+# ) -> Any:
+#     """Send messages to the Nexa language model and get a response."""
+#     if stream:
+#         # return client.streaming_chat(messages, temperature=temperature)
+#         raise NotImplementedError("Nexa streaming chat is not implemented yet.")
+#     else:
+#         return client.chat(messages, temperature=temperature)

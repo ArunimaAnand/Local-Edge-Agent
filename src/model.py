@@ -43,26 +43,36 @@ class ModelInterface:
             raise ValueError("MODEL_PROVIDER is not set in config.yaml")
         
         if self.model_provider.lower() == "anythingllm":
-            return anythingllm_chat_completion(
-                client=self.client,
-                messages=messages,
-                temperature=temperature,
-                stream=stream
-            )
+            if stream:
+                raise NotImplementedError("AnythingLLM streaming chat is not implemented yet.")
+            return self.client.chat(messages)
+            
+            # return anythingllm_chat_completion(
+            #     client=self.client,
+            #     messages=messages,
+            #     temperature=temperature,
+            #     stream=stream
+            # )
         elif self.model_provider.lower() == "lmstudio":
-            return lmstudio_chat_completion(
-                client=self.client,
-                messages=messages,
-                temperature=temperature,
-                stream=stream
-            )
+            if stream:
+                raise NotImplementedError("LM Studio streaming chat is not implemented yet.")
+            return self.client.chat(messages, temperature=temperature)
+
+            # return lmstudio_chat_completion(
+            #     client=self.client,
+            #     messages=messages,
+            #     temperature=temperature,
+            #     stream=stream
+            # )
         elif self.model_provider.lower() == "nexa":
-            # raise NotImplementedError("Nexa support is not implemented yet.")
-            return nexa_chat_completion(
-                client=self.client,
-                messages=messages,
-                temperature=temperature,
-                stream=stream
-            )
+            if stream:
+                raise NotImplementedError("Nexa streaming chat is not implemented yet.")
+            return self.client.chat(messages, temperature=temperature)
+            # return nexa_chat_completion(
+            #     client=self.client,
+            #     messages=messages,
+            #     temperature=temperature,
+            #     stream=stream
+            # )
         else:
             raise ValueError(f"Unsupported MODEL_PROVIDER: {self.model_provider}")
