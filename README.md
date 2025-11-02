@@ -1,4 +1,5 @@
 # Local Agent
+![Local Agent logo](local-agent.png)
 
 An edge agent framework built in pure Python.
 - Connects to local language model servers: AnythingLLM, LM Studio, and Nexa
