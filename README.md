@@ -22,10 +22,10 @@ An edge agent framework built in pure Python.
 3. Run the tests to verify the configuration
    ```
    # Windows PowerShell
-    .\scripts\run_tests.ps1 -l
+    .\scripts\run_tests.ps1 -c -l
 
    # Mac/Linux
-   ./scripts/run_tests.sh -l
+   ./scripts/run_tests.sh -c -l
    ```
 4. Run the local agent
    ```sh

@@ -67,11 +67,12 @@ Run the tests from the base directory to verify your setup:
 ```
 # use flags to select specific backend tests, none for all
 # -a: AnythingLLM
+# -c: Core tests
 # -l: LM Studio
-# -n: Nexa
+# -n: Nexa  # ARM64 Windows only
 
 # Windows PowerShell
-.\scripts\run_tests.ps1
+.\scripts\run_tests.ps1 
 
 # Mac/Linux
 ./scripts/run_tests.sh -a -l
