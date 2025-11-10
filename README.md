@@ -28,7 +28,9 @@ An edge agent framework built in pure Python.
    # Mac/Linux
    ./scripts/run_tests.sh -c -l
    ```
-4. Run the local agent
+4. Configure your local LLM server settings in `config.yaml`.
+5. Run your chosen model server (e.g., AnythingLLM, LM Studio, or Nexa).
+6. Run the local agent
    ```sh
    python main.py
    ```
