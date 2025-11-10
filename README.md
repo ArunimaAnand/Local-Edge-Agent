@@ -18,7 +18,7 @@ An edge agent framework built in pure Python.
    # Mac/Linux
    source venv/bin/activate
    
-   pip install openai httpx pyyaml requests pytest
+   pip install openai httpx pyyaml requests pytest googlesearch-python
    ```
 3. Run the tests to verify the configuration
    ```
