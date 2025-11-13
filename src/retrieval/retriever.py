@@ -1,3 +1,5 @@
+from sentence_transformers import SentenceTransformer
+
 class Embeddings:
     def __init__(self, model):
         self.model = model
@@ -34,12 +36,13 @@ class VectorStore:
 class Retriever:
     def __init__(
         self,
-        embeddings: Embeddings,
-        vector_store: VectorStore,
+        embedding_model: str = "all-MiniLM-L6-v2",
+        index_path: str = "faiss_index.index",
+        metadata_path: str = "metadata.jsonl",
         top_k: int = 5
     ):
-        self.embeddings = embeddings
-        self.vector_store = vector_store
+        self.embeddings = Embeddings(SentenceTransformer(embedding_model))
+        self.vector_store = VectorStore(index_path=index_path, metadata_path=metadata_path)
         self.top_k = top_k
 
     def retrieve(self, query: str) -> list[dict]:

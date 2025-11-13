@@ -35,10 +35,13 @@ class Agent:
         self.short_memory = []
         self._max_short_memory = config.get("SHORT_MEMORY_SIZE", 20) # messages
         self._disable_short_memory = config.get("DISABLE_SHORT_MEMORY", False)
+        # # # # # # # # # # # # # # # # # # # #
 
         # conversation transcripts for debugging/analysis/oversight
         self.transcript_file = f"transcripts/transcript_{self._get_timestamp()}.txt"
-        # # # # # # # # # # # # # # # # # # # #
+
+        # tool call pattern
+        self.tool_call_pattern = re.compile(r"^(\w+)\((.*)\)$", re.DOTALL)
 
     def run(self) -> None:
         """Run the agent loop."""
@@ -86,11 +89,9 @@ class Agent:
         """
         messages = self._build_prompt(user_input)
 
-        tool_call_pattern = re.compile(r"^(\w+)\((.*)\)$", re.DOTALL)
-
         # call the model with the initial request and check for tool calls
         response = self.model.chat_completion(messages)
-        match = tool_call_pattern.match(response.strip())
+        match = self.tool_call_pattern.match(response.strip())
         
         # process the response
         result = ""
@@ -138,6 +139,16 @@ class Agent:
                 content = message["content"]
                 messages.append({"role": "system", "content": f"{role.capitalize()}: {content}"})
         
+        # deepen the context with retrieved documents (if retriever is set)
+        # TODO: test and extend
+        if self.retriever:
+            retrieved_docs = self.retriever.retrieve(user_input)
+            if retrieved_docs:
+                retrieval_content = "Relevant Documents:\n"
+                for i, doc in enumerate(retrieved_docs, 1):
+                    retrieval_content += f"Document {i} (Source: {doc.get('source', 'unknown')}):\n{doc.get('text', '')}\n\n"
+                messages.append({"role": "system", "content": retrieval_content.strip()})
+
         # finally, add the current user input
         messages.append({"role": "user", "content": user_input})
         return messages

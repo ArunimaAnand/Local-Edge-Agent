@@ -3,6 +3,7 @@ import yaml
 
 from src.agent import Agent
 from src.tools import tools, tool_descriptions
+from src.retrieval.retriever import Retriever
 
 def agent_identity() -> str:
     """Build the agent identity with system prompt and instructions."""
@@ -24,23 +25,17 @@ def main():
 
     retriever = None
     if config.get("RETRIEVAL_ENABLED", False):
-        from src.retrieval.retriever import Embeddings, VectorStore
-        from sentence_transformers import SentenceTransformer
-        
-        embeddings = Embeddings(SentenceTransformer(config.get("EMBEDDING_MODEL", "all-MiniLM-L6-v2")))
-        vector_store = VectorStore(
+        retriever = Retriever(
+            embedding_model=config.get("EMBEDDING_MODEL", "all-MiniLM-L6-v2"),
             index_path=config.get("FAISS_INDEX_PATH", "faiss_index.index"),
-            metadata_path=config.get("METADATA_PATH", "metadata.jsonl")
+            metadata_path=config.get("METADATA_PATH", "metadata.jsonl"),
+            top_k=config.get("RETRIEVAL_TOP_K", 5)
         )
-        retriever = {
-            "vector_store": vector_store,
-            "embeddings": embeddings,
-            "top_k": config.get("RETRIEVAL_TOP_K", 5)
-        }
 
     agent = Agent(
         tools=tools,
-        identity=agent_identity()
+        identity=agent_identity(),
+        retriever=retriever
     )
     agent.run()
 
