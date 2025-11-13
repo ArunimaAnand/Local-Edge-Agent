@@ -24,8 +24,7 @@ def main():
 
     retriever = None
     if config.get("RETRIEVAL_ENABLED", False):
-        from src.retrieval.vector_store import VectorStore
-        from src.retrieval.embedding import Embeddings
+        from src.retrieval.retriever import Embeddings, VectorStore
         from sentence_transformers import SentenceTransformer
         
         embeddings = Embeddings(SentenceTransformer(config.get("EMBEDDING_MODEL", "all-MiniLM-L6-v2")))

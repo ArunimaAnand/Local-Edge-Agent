@@ -1,0 +1,5 @@
+THE GREAT PICKLE PARLIAMENT OF NEPTUNE
+
+On the third Tuesday of the Nebulon Moon Cycle, the Pickle Parliament of Neptune convened beneath the giant inflatable otter that served as their Supreme Chamber. Chair-Pickle Reginald Q. Brineworth slammed his tiny gavel (made of compressed pickle seeds) and declared, “By the power of the Brine, we shall now address the crisis of the Disappearing Sandwiches!”
+
+At once, all twenty-eight sentient pickles gasped in tangy horror. The culprit, according to legend, was the elusive Sandwich-Snatching Space Goose, known for wearing glittery boots and demanding tolls in the form of interpretive dance. As Brineworth launched into a speech about intergalactic mustard tariffs, the inflatable otter slowly rotated, which everyone took as a sign of cosmic approval.

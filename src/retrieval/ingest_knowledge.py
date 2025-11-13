@@ -1,4 +1,5 @@
-# load raw data from knowledge/*.md and knowledge/*.txt.
+# load raw data from knowledge/*.md, knowledge/*.txt, and knowledge/*.pdf
+# convert .md and .pdf to text
 
 # chunk the texts into 500-1000 token chunks. Improve later
 

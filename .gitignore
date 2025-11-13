@@ -7,4 +7,12 @@ config.yaml
 .pytest_cache/
 transcripts/transcript_*.txt
 faiss_index.index
-knowledge/
+
+## ignore all knowledge files by default
+knowledge/*.[md|txt|pdf]
+
+# keep the sample knowledge files
+!knowledge/interdimensional_toast_sync.pdf
+!knowledge/pickle_parliament.md
+!knowledge/operation_banana_fog.txt
+!knowledge/README.md
