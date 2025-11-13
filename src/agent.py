@@ -11,7 +11,8 @@ class Agent:
     def __init__(
         self,
         tools: List[Tool],
-        identity: str
+        identity: str,
+        retriever: dict = None,
     ):
         # temporarily read in the configuration for the agent
         # TODO: scope the configuration to only read the agent vars into a dict
@@ -19,14 +20,11 @@ class Agent:
             config = yaml.safe_load(f)
 
         # # # # core agent configuration # # # #
-        # model used by the agent
-        self.model = ModelInterface()
-
-        # tools available to the agent
-        self.tools = {tool.name: tool for tool in tools}
-
-        # system instructions for the agent
-        self.core_identity = identity
+        
+        self.model = ModelInterface()  # model used by the agent
+        self.tools = {tool.name: tool for tool in tools}  # tools available to the agent
+        self.core_identity = identity  # system instructions for the agent
+        self.retriever = retriever  # context retriever (if any)
         # # # # # # # # # # # # # # # # # # # #
 
         # # # # agent memory management # # # #
@@ -37,10 +35,10 @@ class Agent:
         self.short_memory = []
         self._max_short_memory = config.get("SHORT_MEMORY_SIZE", 20) # messages
         self._disable_short_memory = config.get("DISABLE_SHORT_MEMORY", False)
-        # # # # # # # # # # # # # # # # # # # #
 
         # conversation transcripts for debugging/analysis/oversight
         self.transcript_file = f"transcripts/transcript_{self._get_timestamp()}.txt"
+        # # # # # # # # # # # # # # # # # # # #
 
     def run(self) -> None:
         """Run the agent loop."""

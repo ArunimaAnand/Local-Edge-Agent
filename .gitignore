@@ -7,3 +7,4 @@ config.yaml
 .pytest_cache/
 transcripts/transcript_*.txt
 faiss_index.index
+knowledge/
