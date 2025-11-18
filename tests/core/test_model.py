@@ -23,7 +23,7 @@ def test_model_chat_completion(monkeypatch):
     mock_file = io.StringIO(config_yaml)
     monkeypatch.setattr("builtins.open", lambda f, mode="r": mock_file)
     monkeypatch.setattr("src.model.setup_anythingllm_client", lambda config: DummyClient())
-    monkeypatch.setattr("src.model.anythingllm_chat_completion", lambda client, messages, temperature, stream: "response")
+    # monkeypatch.setattr("src.model.anythingllm_chat_completion", lambda client, messages, temperature, stream: "response")
     model = ModelInterface()
     result = model.chat_completion([{"role": "user", "content": "hi"}])
     assert result == "response"
