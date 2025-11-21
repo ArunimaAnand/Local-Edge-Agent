@@ -1,15 +1,16 @@
 #!/bin/bash
 
-# Usage: ./run_tests.sh [-a] [-l]
+# Usage: ./run_tests.sh [-a] [-c] [-l] [-o]
 # -a: Run AnythingLLM tests only
 # -c: Run core tests only
 # -l: Run LMStudio tests only
+# -o: Run Ollama tests only
 
 set -e
 
 # Prompt user to start backend servers
 cat <<EOF
-Please start the required backend servers (AnythingLLM, LMStudio, Nexa) manually.
+Please start the required backend servers (AnythingLLM, LMStudio, Nexa, Ollama) manually.
 Press Enter when complete.
 EOF
 read
@@ -22,27 +23,30 @@ cd "$SCRIPT_DIR/.."
 a_flag=false
 c_flag=false
 l_flag=false
-while getopts "acl" opt; do
+o_flag=false
+while getopts "aclo" opt; do
   case $opt in
     a) a_flag=true ;;
     c) c_flag=true ;;
     l) l_flag=true ;;
+    o) o_flag=true ;;
     *) ;;
   esac
 done
 
 # Determine tests to run
 tests=()
-if $a_flag || (! $a_flag && ! $c_flag && ! $l_flag); then tests+=("tests/test_anythingllm.py"); fi
-if $c_flag || (! $a_flag && ! $c_flag && ! $l_flag); then
+if $a_flag || (! $a_flag && ! $c_flag && ! $l_flag && ! $o_flag); then tests+=("tests/test_anythingllm.py"); fi
+if $c_flag || (! $a_flag && ! $c_flag && ! $l_flag && ! $o_flag); then
   tests+=("tests/core/test_agent.py")
   tests+=("tests/core/test_model.py")
   tests+=("tests/core/test_tools.py")
 fi
-if $l_flag || (! $a_flag && ! $c_flag && ! $l_flag); then tests+=("tests/test_lmstudio.py"); fi
+if $l_flag || (! $a_flag && ! $c_flag && ! $l_flag && ! $o_flag); then tests+=("tests/test_lmstudio.py"); fi
+if $o_flag || (! $a_flag && ! $c_flag && ! $l_flag && ! $o_flag); then tests+=("tests/test_ollama.py"); fi
 
 if [ ${#tests[@]} -eq 0 ]; then
-  tests=("tests/test_anythingllm.py" "tests/test_lmstudio.py" "tests/core/test_agent.py" "tests/core/test_model.py" "tests/core/test_tools.py")
+  tests=("tests/test_anythingllm.py" "tests/test_lmstudio.py" "tests/test_ollama.py" "tests/core/test_agent.py" "tests/core/test_model.py" "tests/core/test_tools.py")
 fi
 
 echo "Running pytest for: ${tests[*]}"

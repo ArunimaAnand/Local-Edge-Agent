@@ -2,10 +2,11 @@ param(
     [switch]$a,
     [switch]$c,
     [switch]$l,
-    [switch]$n
+    [switch]$n,
+    [switch]$o
 )
 
-Write-Host "Please start the required backend servers (AnythingLLM, LMStudio, Nexa) manually."
+Write-Host "Please start the required backend servers (AnythingLLM, LMStudio, Nexa, Ollama) manually."
 Write-Host "Press Enter when complete."
 Read-Host
 
@@ -14,17 +15,18 @@ Read-Host
 Set-Location $PSScriptRoot\..
 
 $tests = @()
-if ($a -or (-not $a -and -not $c -and -not $l -and -not $n)) { $tests += "tests/test_anythingllm.py" }
-if ($c -or (-not $a -and -not $c -and -not $l -and -not $n)) {
+if ($a -or (-not $a -and -not $c -and -not $l -and -not $n -and -not $o)) { $tests += "tests/test_anythingllm.py" }
+if ($c -or (-not $a -and -not $c -and -not $l -and -not $n -and -not $o)) {
     $tests += "tests/core/test_agent.py"
     $tests += "tests/core/test_model.py"
     $tests += "tests/core/test_tools.py"
 }
-if ($l -or (-not $a -and -not $c -and -not $l -and -not $n)) { $tests += "tests/test_lmstudio.py" }
-if ($n -or (-not $a -and -not $c -and -not $l -and -not $n)) { $tests += "tests/test_nexa.py" }
+if ($l -or (-not $a -and -not $c -and -not $l -and -not $n -and -not $o)) { $tests += "tests/test_lmstudio.py" }
+if ($n -or (-not $a -and -not $c -and -not $l -and -not $n -and -not $o)) { $tests += "tests/test_nexa.py" }
+if ($o -or (-not $a -and -not $c -and -not $l -and -not $n -and -not $o)) { $tests += "tests/test_ollama.py" }
 
 if ($tests.Count -eq 0) {
-    $tests = @("tests/test_anythingllm.py", "tests/test_lmstudio.py", "tests/test_nexa.py", "tests/core/test_agent.py", "tests/core/test_model.py", "tests/core/test_tools.py")
+    $tests = @("tests/test_anythingllm.py", "tests/test_lmstudio.py", "tests/test_nexa.py", "tests/test_ollama.py", "tests/core/test_agent.py", "tests/core/test_model.py", "tests/core/test_tools.py")
 }
 
 Write-Host "Running pytest for: $($tests -join ', ')"
