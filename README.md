@@ -44,7 +44,7 @@ I welcome contributions! Please follow these steps:
 4. Create a pull request explaining your changes.
 
 Special thanks to these community contributors:
-- [Suraj Ranganath](github.com/suraj-ranganath)
+- [Suraj Ranganath](https://github.com/suraj-ranganath)
 
 ## License
 
