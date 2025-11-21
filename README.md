@@ -43,6 +43,9 @@ I welcome contributions! Please follow these steps:
 3. Make your changes, commit them, and push to your branch.
 4. Create a pull request explaining your changes.
 
+Special thanks to these community contributors:
+- [Suraj Ranganath](github.com/suraj-ranganath)
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
