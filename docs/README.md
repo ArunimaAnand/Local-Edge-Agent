@@ -18,7 +18,7 @@ Use this guide to setup and configure the Local Agent with your choice of local 
 
    ```yaml
    # general variables
-    MODEL_PROVIDER: "your-provider-here"  # options: anythingllm, lmstudio, nexa
+    MODEL_PROVIDER: "your-provider-here"  # options: anythingllm, lmstudio, nexa, ollama
     STREAM: False  # not working, do not use yet (or submit a PR!)
     STREAM_TIMEOUT: 30
     
@@ -41,6 +41,11 @@ Use this guide to setup and configure the Local Agent with your choice of local 
     # Nexa configuration
     NEXA_API_KEY: "nexa" # placeholder, configured in the sdk
     NEXA_URL: "http://127.0.0.1:18181/v1/chat/completions"
+
+    # Ollama configuration
+    OLLAMA_API_KEY: "ollama" # placeholder, not required
+    OLLAMA_MODEL: "gemma3:27b"
+    OLLAMA_URL: "http://localhost:11434/v1"
    ```
    Adjust the values as needed for the providers you want to use, sensible defaults have been chosen.
    
@@ -58,6 +63,7 @@ Use this guide to setup and configure the Local Agent with your choice of local 
 - [AnythingLLM Backend Instructions](anythingllm_setup.md)
 - [LM Studio Backend Instructions](lmstudio_setup.md)
 - [Nexa Backend Instructions](nexa_setup.md)
+- [Ollama Backend Instructions](ollama_setup.md)
 
 ---
 
@@ -70,6 +76,7 @@ Run the tests from the base directory to verify your setup:
 # -c: Core tests
 # -l: LM Studio
 # -n: Nexa  # ARM64 Windows only
+# -o: Ollama
 
 # Windows PowerShell (running all tests)
 .\scripts\run_tests.ps1 

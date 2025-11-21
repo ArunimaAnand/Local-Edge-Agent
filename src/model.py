@@ -5,6 +5,7 @@ from typing import List, Dict, Any
 from src.servers.anythingllm import setup_anythingllm_client # , anythingllm_chat_completion
 from src.servers.lmstudio import setup_lm_studio_client # , lmstudio_chat_completion
 from src.servers.nexa import setup_nexa_client # , nexa_chat_completion
+from src.servers.ollama import setup_ollama_client
 
 # A message is a dictionary with a role and content
 Message = Dict[str, str]
@@ -29,6 +30,8 @@ class ModelInterface:
             return setup_lm_studio_client(config)
         elif self.model_provider.lower() == "nexa":
             return setup_nexa_client(config)
+        elif self.model_provider.lower() == "ollama":
+            return setup_ollama_client(config)
         else:
             raise ValueError(f"Unsupported MODEL_PROVIDER: {self.model_provider}")
 
@@ -74,5 +77,9 @@ class ModelInterface:
             #     temperature=temperature,
             #     stream=stream
             # )
+        elif self.model_provider.lower() == "ollama":
+            if stream:
+                return self.client.streaming_chat(messages, temperature=temperature)
+            return self.client.chat(messages, temperature=temperature)
         else:
             raise ValueError(f"Unsupported MODEL_PROVIDER: {self.model_provider}")
