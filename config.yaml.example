@@ -1,0 +1,32 @@
+# Local Agent Configuration File
+# Copy this file to config.yaml and adjust the values for your setup
+
+# General variables
+MODEL_PROVIDER: "ollama"  # options: anythingllm, lmstudio, nexa, ollama
+STREAM: False  # not working, do not use yet (or submit a PR!)
+STREAM_TIMEOUT: 30
+
+# Memory settings
+SHORT_MEMORY_SIZE: 20  # messages
+LONG_MEMORY_SIZE: 5096  # tokens
+DISABLE_SHORT_MEMORY: False
+DISABLE_LONG_MEMORY: True # not working, do not use yet (or submit a PR!)
+
+# AnythingLLM configuration
+ANYTHINGLLM_API_KEY: "your-api-key"
+ANYTHINGLLM_WORKSPACE: "local-agent"
+ANYTHINGLLM_URL: "http://localhost:3001/api/v1"
+
+# LM Studio configuration
+LM_STUDIO_API_KEY: "lm-studio" # placeholder, not used
+LM_STUDIO_MODEL: "hugging-quants/llama-3.2-3b-instruct"
+LM_STUDIO_URL: "http://localhost:1234/v1"
+
+# Nexa configuration
+NEXA_API_KEY: "nexa" # placeholder, configured in the sdk
+NEXA_URL: "http://127.0.0.1:18181/v1/chat/completions"
+
+# Ollama configuration
+OLLAMA_API_KEY: "ollama" # placeholder, not required
+OLLAMA_MODEL: "llama3.2:3b"
+OLLAMA_URL: "http://localhost:11434/v1"
