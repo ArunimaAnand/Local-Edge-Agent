@@ -2,7 +2,7 @@
 # Copy this file to config.yaml and adjust the values for your setup
 
 # General variables
-MODEL_PROVIDER: "ollama"  # options: anythingllm, lmstudio, nexa, ollama
+MODEL_PROVIDER: "lmstudio"  # options: anythingllm, lmstudio, nexa, ollama
 STREAM: False  # not working, do not use yet (or submit a PR!)
 STREAM_TIMEOUT: 30
 
@@ -18,7 +18,7 @@ ANYTHINGLLM_WORKSPACE: "local-agent"
 ANYTHINGLLM_URL: "http://localhost:3001/api/v1"
 
 # LM Studio configuration
-LM_STUDIO_API_KEY: "lm-studio" # placeholder, not used
+LM_STUDIO_API_KEY: "lm-studio" # placeholder, not required
 LM_STUDIO_MODEL: "hugging-quants/llama-3.2-3b-instruct"
 LM_STUDIO_URL: "http://localhost:1234/v1"
 
