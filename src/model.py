@@ -49,34 +49,14 @@ class ModelInterface:
             if stream:
                 raise NotImplementedError("AnythingLLM streaming chat is not implemented yet.")
             return self.client.chat(messages)
-            
-            # return anythingllm_chat_completion(
-            #     client=self.client,
-            #     messages=messages,
-            #     temperature=temperature,
-            #     stream=stream
-            # )
         elif self.model_provider.lower() == "lmstudio":
             if stream:
                 raise NotImplementedError("LM Studio streaming chat is not implemented yet.")
             return self.client.chat(messages, temperature=temperature)
-
-            # return lmstudio_chat_completion(
-            #     client=self.client,
-            #     messages=messages,
-            #     temperature=temperature,
-            #     stream=stream
-            # )
         elif self.model_provider.lower() == "nexa":
             if stream:
                 raise NotImplementedError("Nexa streaming chat is not implemented yet.")
             return self.client.chat(messages, temperature=temperature)
-            # return nexa_chat_completion(
-            #     client=self.client,
-            #     messages=messages,
-            #     temperature=temperature,
-            #     stream=stream
-            # )
         elif self.model_provider.lower() == "ollama":
             if stream:
                 return self.client.streaming_chat(messages, temperature=temperature)
