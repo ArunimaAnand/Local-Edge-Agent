@@ -46,6 +46,11 @@ I welcome contributions! Please follow these steps:
 Special thanks to these community contributors:
 - [Suraj Ranganath](https://github.com/suraj-ranganath)
 
+## Workshop usage (Arunima)
+
+I used this project in a hands on workshop to explore how a local LLM can run on my machine and answer basic questions.
+I captured an example interaction in `transcripts/arunima-workshop.md`.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
